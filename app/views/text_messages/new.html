@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Someone's On Deck!</title>
+  </head>
+  <body>
+    Is Trump on deck?
+    <button class="button" id="sendText" type="button" name="button">Alert the Fans!</button>
+    <script type="text/javascript">
+      $("#sendText").on("click", function() {
+        $.ajax({
+          type: "POST",
+          url: "/text_messages",
+          data: {
+              // key: "AIzaSyD7nKgEWQCBHw1uGJOEvXN-ae4cMeOMXuE",
+              // cx: "012667598935678745968:ixjc-b6xzre",
+              // fields: "items(link),queries",
+              // q: searchParameters,
+              // start: (timesChecked.value - 1) * 10 + 1
+          },
+          success: function (res) {
+            console.log("Text sent");
+          },
+          error: function (xhr, status, error) {
+            console.log("Error yo");
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
+          }
+        });
+      })
+    </script>
+  </body>
+</html>
