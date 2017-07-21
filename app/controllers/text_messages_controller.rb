@@ -1,8 +1,8 @@
 class TextMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
   def create
-    account_sid = 'AC2f849325773a8d8bb652a418f772ea3c'
-    auth_token = 'b6ad929d59deb307545ecd808d59f3f8'
+    account_sid = ENV['TWILLIO_SID']
+    auth_token = ENV['TWILLIO_TOKEN']
 
     # set up a client to talk to the Twilio REST API
     @client = Twilio::REST::Client.new account_sid, auth_token
