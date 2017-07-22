@@ -13,18 +13,18 @@ class TextMessagesController < ApplicationController
       :body => 'Trout is on deck!',
       # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
     })
-    @client.messages.create({
-      :from => '+15624554829',
-      :to => '+17144868433',
-      :body => 'Trout is on deck!',
-      # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
-    })
-    @client.messages.create({
-      :from => '+15624554829',
-      :to => '+17148156295',
-      :body => 'Trout is on deck!',
-      # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
-    })
+    # @client.messages.create({
+    #   :from => '+15624554829',
+    #   :to => '+17144868433',
+    #   :body => 'Trout is on deck!',
+    #   # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
+    # })
+    # @client.messages.create({
+    #   :from => '+15624554829',
+    #   :to => '+17148156295',
+    #   :body => 'Trout is on deck!',
+    #   # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
+    # })
     render json: {success: "Text message sent to 17148099426"}
   end
 
