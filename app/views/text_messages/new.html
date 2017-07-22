@@ -21,6 +21,7 @@
               // start: (timesChecked.value - 1) * 10 + 1
           },
           success: function (res) {
+            $("#sendText").attr("disabled",true);
             console.log("Text sent");
           },
           error: function (xhr, status, error) {
