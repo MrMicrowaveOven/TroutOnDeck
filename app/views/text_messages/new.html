@@ -34,9 +34,12 @@
       var todaysDate = new Date(Date.now())
       var todaysDateString = todaysDate.toDateString();
       var gameStartTime;
-      var gamesToday = angelsDates.filter(function(date) {
+      var date;
+      var gamesToday = openAngelsGames.filter(function(game) {
+        date = new Date(game.scheduled)
         if (date.toDateString() == todaysDateString) {
-          gameStartTime = date
+          gameStartTime = date;
+          console.log(game);
           return true;
         } else {
           return false;
