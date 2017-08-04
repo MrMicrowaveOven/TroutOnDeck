@@ -13,7 +13,7 @@
    </div>
    <div class="application">
      <br>
-     <div>Is Trout on deck?</div>
+     <div class="buttonDescription">Is Trout on deck?</div>
      <button class="button inheritFont" id="sendText" type="button" name="button" disabled>Alert the Fans!</button>
    </div>
    <div class= "portfolioLinks" id="portfolioLinks">
@@ -43,16 +43,16 @@
         }
       })
       if (gamesToday.length > 0) {
-        $(".gameData").append("<div>Game today!!!</div><br>")
+        $(".gameData").append("<div class='gameStatus'>Game today!!!</div><br>")
         if (todaysDate < gameStartTime) {
-          $(".gameData").append("<div>...but it hasn't started yet.</div><br>");
-          $(".gameData").append("<div>It's scheduled for " + gameStartTime + "</div><br>");
+          $(".gameData").append("<div class='gameStatus'>...but it hasn't started yet.</div><br>");
+          $(".gameData").append("<div class='gameStatus'>It's scheduled for " + gameStartTime + "</div><br>");
         } else {
           $("#sendText").prop('disabled',false);
-          $(".gameData").append("<div>And it's going on now!</div><br>");
+          $(".gameData").append("<div class='gameStatus'>And it's going on now!</div><br>");
         }
       } else {
-        $(".gameData").append("<div>No game today...</div><br>")
+        $(".gameData").append("<div class='gameStatus'>No game today...</div><br>")
       }
       $("#sendText").on("click", function() {
         $.ajax({
