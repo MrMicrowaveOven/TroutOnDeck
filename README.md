@@ -1,4 +1,16 @@
-# Timing
+# TroutOnDeck
+
+This is a fun little page that allows users to notify everyone when Mike Trout is on-deck, since no one wants to miss one of his at-bats.
+
+## UPDATE
+
+The button will not work if there is no game scheduled TODAY, or if the game scheduled TODAY hasn't started yet.
+
+Below is a hypothetical means of using the SportRadar API to automate the app, but it will most likely require more than 1000 calls a month which costs lots of money.
+
+---
+
+## Timing
 
 I'm realizing we can actually make this fairly simple.  I don't know how many "checks" this will add up to, but this should bring us close.
 
