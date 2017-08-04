@@ -6,20 +6,48 @@
     <title>Someone's On Deck!</title>
   </head>
   <body>
+    <div class="gameData">
+
+    </div>
     Is Trout on deck?
-    <button class="button" id="sendText" type="button" name="button">Alert the Fans!</button>
+    <button class="button" id="sendText" type="button" name="button" disabled>Alert the Fans!</button>
     <script type="text/javascript">
+      var openAngelsGames = SCHEDULE.games.filter(function(game) {
+        return game.status == "scheduled" && (game.away.id == "4f735188-37c8-473d-ae32-1f7e34ccf892" || game.home.id == "4f735188-37c8-473d-ae32-1f7e34ccf892")
+      })
+
+      var angelsDates = [];
+      openAngelsGames.forEach(function(game) {
+        angelsDates.push(new Date(game.scheduled))
+      });
+
+      var todaysDate = new Date(Date.now())
+      var todaysDateString = todaysDate.toDateString();
+      var gameStartTime;
+      var gamesToday = angelsDates.filter(function(date) {
+        if (date.toDateString() == todaysDateString) {
+          gameStartTime = date
+          return true;
+        } else {
+          return false;
+        }
+      })
+      if (gamesToday.length > 0) {
+        $(".gameData").append("<div>Game today!!!</div>")
+        if (todaysDate < gameStartTime) {
+          $(".gameData").append("<div>...but it hasn't started yet.</div>");
+          $(".gameData").append("<div>It's scheduled for " + gameStartTime + "</div>");
+        } else {
+          $("#sendText").prop('disabled',false);
+          $(".gameData").append("<div>And it's going on now!</div>");
+        }
+      } else {
+        $(".gameData").append("<div>No game today...</div>")
+      }
       $("#sendText").on("click", function() {
         $.ajax({
           type: "POST",
           url: "/text_messages",
-          data: {
-              // key: "AIzaSyD7nKgEWQCBHw1uGJOEvXN-ae4cMeOMXuE",
-              // cx: "012667598935678745968:ixjc-b6xzre",
-              // fields: "items(link),queries",
-              // q: searchParameters,
-              // start: (timesChecked.value - 1) * 10 + 1
-          },
           success: function (res) {
             $("#sendText").attr("disabled",true);
             console.log("Text sent");
