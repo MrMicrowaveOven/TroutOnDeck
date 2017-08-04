@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :production do
   # Use pg as the production database
-  # gem 'pg'
+  gem 'pg'
 end
 
 group :development, :test do
