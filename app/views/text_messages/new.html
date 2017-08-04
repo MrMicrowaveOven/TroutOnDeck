@@ -6,11 +6,21 @@
     <title>Someone's On Deck!</title>
   </head>
   <body>
-    <div class="gameData">
 
-    </div>
-    Is Trout on deck?
-    <button class="button" id="sendText" type="button" name="button" disabled>Alert the Fans!</button>
+    <div class="description">
+      <div class="gameData">
+      </div>
+   </div>
+   <div class="application">
+     <br>
+     <div>Is Trout on deck?</div>
+     <button class="button inheritFont" id="sendText" type="button" name="button" disabled>Alert the Fans!</button>
+   </div>
+   <div class= "portfolioLinks" id="portfolioLinks">
+     Written by Benjamin Zagorski.
+     <br>
+     Click <a href="https://github.com/MrMicrowaveOven/TroutOnDeck" target="_blank"> here</a> for the github repo.
+   </div>
     <script type="text/javascript">
       var openAngelsGames = SCHEDULE.games.filter(function(game) {
         return game.status == "scheduled" && (game.away.id == "4f735188-37c8-473d-ae32-1f7e34ccf892" || game.home.id == "4f735188-37c8-473d-ae32-1f7e34ccf892")
@@ -33,16 +43,16 @@
         }
       })
       if (gamesToday.length > 0) {
-        $(".gameData").append("<div>Game today!!!</div>")
+        $(".gameData").append("<div>Game today!!!</div><br>")
         if (todaysDate < gameStartTime) {
-          $(".gameData").append("<div>...but it hasn't started yet.</div>");
-          $(".gameData").append("<div>It's scheduled for " + gameStartTime + "</div>");
+          $(".gameData").append("<div>...but it hasn't started yet.</div><br>");
+          $(".gameData").append("<div>It's scheduled for " + gameStartTime + "</div><br>");
         } else {
           $("#sendText").prop('disabled',false);
-          $(".gameData").append("<div>And it's going on now!</div>");
+          $(".gameData").append("<div>And it's going on now!</div><br>");
         }
       } else {
-        $(".gameData").append("<div>No game today...</div>")
+        $(".gameData").append("<div>No game today...</div><br>")
       }
       $("#sendText").on("click", function() {
         $.ajax({
