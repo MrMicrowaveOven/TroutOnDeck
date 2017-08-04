@@ -13,9 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+
  body {
    position: relative;
-   font-size: x-large;
+   font-size: 40px;
    font-family: 'Slabo 27px', serif;
    letter-spacing: .5px;
    margin: 60px auto;
@@ -37,8 +39,8 @@
    background-size: 1700px*/
  }
 
- .buttonDescription {
-   padding: 5px;
+ .buttonDescription, .gameStatus {
+   padding: 15px;
  }
 
  #portfolioLinks {
@@ -116,3 +118,11 @@
  .inlineText {
    display: inline-block;
  }
+
+ /*@media screen and (max-width: 900px) {
+   body {
+     background-color: red;
+     font-size: 70px;
+     height: 100%;
+   }
+ }*/
