@@ -39,12 +39,4 @@ class TextMessagesController < ApplicationController
     end
     render json: jsonResponse
   end
-
-  def new
-    # render json: "New stuff"
-  end
-
-  def index
-    render json: "Hello"
-  end
 end
