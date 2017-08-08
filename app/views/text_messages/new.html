@@ -12,9 +12,11 @@
       </div>
    </div>
    <div class="application">
-     <br>
      <div class="buttonDescription">Is Trout on deck?</div>
      <button class="button inheritFont" id="sendText" type="button" name="button" disabled>Alert the Fans!</button>
+     <div class="response">
+
+     </div>
    </div>
    <div class= "portfolioLinks" id="portfolioLinks">
      Written by Benjamin Zagorski.
@@ -39,31 +41,36 @@
         date = new Date(game.scheduled)
         if (date.toDateString() == todaysDateString) {
           gameStartTime = date;
-          console.log(game);
+          gameId = game.id;
+          // console.log(game);
           return true;
         } else {
           return false;
         }
       })
       if (gamesToday.length > 0) {
-        $(".gameData").append("<div class='gameStatus'>Game today!!!</div><br>")
+        $(".gameData").append("<div class='gameStatus'>Game today!!!</div>")
         if (todaysDate < gameStartTime) {
-          $(".gameData").append("<div class='gameStatus'>...but it hasn't started yet.</div><br>");
-          $(".gameData").append("<div class='gameStatus'>It's scheduled for " + gameStartTime + "</div><br>");
+          $(".gameData").append("<div class='gameStatus'>...but it hasn't started yet.</div>");
+          $(".gameData").append("<div class='gameStatus'>It's scheduled for " + gameStartTime + "</div>");
         } else {
           $("#sendText").prop('disabled',false);
-          $(".gameData").append("<div class='gameStatus'>And it's going on now!</div><br>");
+          $(".gameData").append("<div class='gameStatus'>And it's going on now!</div>");
         }
       } else {
-        $(".gameData").append("<div class='gameStatus'>No game today...</div><br>")
+        $(".gameData").append("<div class='gameStatus'>No game today...</div>")
       }
       $("#sendText").on("click", function() {
         $.ajax({
           type: "POST",
-          url: "/text_messages",
+          url: "/text_messages?gameId=" + gameId,
           success: function (res) {
             $("#sendText").attr("disabled",true);
-            console.log("Text sent");
+            if (res.gameInProgress) {
+              $(".response").html("Text sent!")
+            } else {
+              $(".response").html("Game is over.")
+            }
           },
           error: function (xhr, status, error) {
             console.log("Error yo");
