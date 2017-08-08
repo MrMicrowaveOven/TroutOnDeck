@@ -63,7 +63,7 @@
       $("#sendText").on("click", function() {
         $.ajax({
           type: "POST",
-          url: "/text_messages?gameId=" + gameId,
+          url: "/manager?gameId=" + gameId,
           success: function (res) {
             $("#sendText").attr("disabled",true);
             if (res.gameInProgress) {

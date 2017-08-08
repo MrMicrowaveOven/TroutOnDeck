@@ -1,17 +1,17 @@
 require 'open-uri'
 require 'json'
-class TextMessagesController < ApplicationController
+
+class ManagerController < ApplicationController
   skip_before_action :verify_authenticity_token
   def create
-    gameId = params["gameId"]
-    response = open('https://api.sportradar.us/mlb-t6/games/' + gameId + '/pbp.json?api_key=' + ENV['SPORTRADAR_KEY']).read
-    gameStatus = (JSON.parse(response))["game"]["status"]
+    game_id = params["gameId"]
 
     jsonResponse = {}
-    if gameStatus != "inprogress"
-      jsonResponse["gameInProgress"] = false
+    gameInProgress = BatBoy.game_going_on?(game_id)
+    jsonResponse["gameInProgress"] = gameInProgress
+    if !gameInProgress
     else
-      jsonResponse["gameInProgress"] = true
+      # Send text
       account_sid = ENV['TWILLIO_SID']
       auth_token = ENV['TWILLIO_TOKEN']
 

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # resources :text_messages
   # get "/text_messages/new" => "text_messages#new"
   # get "/text_messages" => "text_messages#index"
-  post "/text_messages" => "text_messages#create"
+  # post "/text_messages" => "text_messages#create"
+
+  post "/manager" => "manager#create"
   # get "/ondeck_checks" => "ondeck_checks#index"
   # delete "/text_messages" => "text_messages#destroy"
   root 'welcome#index'
