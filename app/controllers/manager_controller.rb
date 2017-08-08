@@ -10,7 +10,16 @@ class ManagerController < ApplicationController
     gameInProgress = BatBoy.game_going_on?(game_id)
     jsonResponse["gameInProgress"] = gameInProgress
     if gameInProgress
-      Commentator.send_texts
+      current_time = Time.now
+      most_recent_alert_time = Alert.all.last.created_at
+      # p most_recent_alert
+
+      jsonResponse["textSentRecently"] = Time.now - most_recent_alert_time < 600
+      if !jsonResponse["textSentRecently"]
+        marked_time = Alert.new
+        marked_time.save!
+        Commentator.send_texts
+      end
     end
     render json: jsonResponse
   end

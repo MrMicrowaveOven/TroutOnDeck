@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # get "/text_messages" => "text_messages#index"
   # post "/text_messages" => "text_messages#create"
 
+  get '/alerts' => "alerts#index"
+
   post "/manager" => "manager#create"
   # get "/ondeck_checks" => "ondeck_checks#index"
   # delete "/text_messages" => "text_messages#destroy"

@@ -35,3 +35,9 @@ If Trout is On Deck, we send the text message out to everyone.  Once this happen
 This might be many more checks than we actually need, since we're using the minimum batting time (or close to it anyway), but it's a good starting point.
 
 There will be a few exceptions.  For example, if the bases are loaded and there is 1 out, the inning can end at any point, rather than in 2 minutes minimum.  We can work this out later.
+
+## Play-by-Play checks
+
+1) Check to see if Trout is still playing
+2) Get the player before him
+3) Check to see if either Trout or player before him is at bat

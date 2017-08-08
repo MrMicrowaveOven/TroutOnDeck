@@ -65,9 +65,14 @@
           type: "POST",
           url: "/manager?gameId=" + gameId,
           success: function (res) {
+            console.log(res);
             $("#sendText").attr("disabled",true);
             if (res.gameInProgress) {
-              $(".response").html("Text sent!")
+              if (res.textSentRecently) {
+                $(".response").html("Text was already sent in the last 10 minutes.")
+              } else {
+                $(".response").html("Text sent!")
+              }
             } else {
               $(".response").html("Game is over.")
             }
