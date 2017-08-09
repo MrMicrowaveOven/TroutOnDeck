@@ -41,3 +41,10 @@ There will be a few exceptions.  For example, if the bases are loaded and there 
 1) Check to see if Trout is still playing
 2) Get the player before him
 3) Check to see if either Trout or player before him is at bat
+
+Everyday at 8:05am PST, make a call to DailySchedule and figure out if there's an Angels Game that day.
+
+-If there's a game, SAVE GameId and Scheduled
+
+
+| Date | GameId | Scheduled

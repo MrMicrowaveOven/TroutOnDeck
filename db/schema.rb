@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808212822) do
+ActiveRecord::Schema.define(version: 20170808233102) do
 
   create_table "alerts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "daily_schedules", force: :cascade do |t|
+    t.string "game_id"
+    t.datetime "game_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

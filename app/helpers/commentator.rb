@@ -1,4 +1,18 @@
 class Commentator
+  def self.send_schedule_update
+    account_sid = ENV['TWILLIO_SID']
+    auth_token = ENV['TWILLIO_TOKEN']
+
+    # set up a client to talk to the Twilio REST API
+    @client = Twilio::REST::Client.new account_sid, auth_token
+
+    @client.messages.create({
+      :from => '+15624554829',
+      :to => '+17148099426',
+      :body => 'Schedule has been updated!',
+      # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
+    })
+  end
   def self.send_texts
     account_sid = ENV['TWILLIO_SID']
     auth_token = ENV['TWILLIO_TOKEN']
