@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   # post "/text_messages" => "text_messages#create"
 
   get '/alerts' => "alerts#index"
-  get '/daily_schedules' => "daily_schedules#index"
+  get '/daily_schedules/all' => "daily_schedules#index"
+  get '/daily_schedules' => "daily_schedules#show"
   post '/daily_schedules' => "daily_schedules#create"
 
   post "/manager" => "manager#create"

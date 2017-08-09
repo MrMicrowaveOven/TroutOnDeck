@@ -7,4 +7,8 @@ class DailySchedulesController < ApplicationController
   def index
     render json: DailySchedule.all
   end
+
+  def show
+    render json: DailySchedule.all.last
+  end
 end
