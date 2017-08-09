@@ -24,42 +24,47 @@
      Click <a href="https://github.com/MrMicrowaveOven/TroutOnDeck" target="_blank"> here</a> for the github repo.
    </div>
     <script type="text/javascript">
-      var openAngelsGames = SCHEDULE.games.filter(function(game) {
-        return game.status == "scheduled" && (game.away.id == "4f735188-37c8-473d-ae32-1f7e34ccf892" || game.home.id == "4f735188-37c8-473d-ae32-1f7e34ccf892")
+
+      $.get({
+        data: {},
+        url: "/daily_schedules",
+        datatype: "json",
+        error: function(err) {
+          console.log(err);
+        },
+        success: function(res) {
+          console.log(res);
+          var todaysDate = new Date(Date.now())
+          var todaysDateString = todaysDate.toDateString();
+          var mostRecentScheduledGame = new Date(res.game_time);
+          var mostRecentScheduledGameDateString = mostRecentScheduledGame.toDateString();
+
+          if (todaysDateString == mostRecentScheduledGameDateString) {
+            gameStartTime = mostRecentScheduledGame;
+            gameId = res.game_id;
+            gameToday(gameStartTime);
+          } else {
+            noGameToday();
+          }
+        },
       })
 
-      var angelsDates = [];
-      openAngelsGames.forEach(function(game) {
-        angelsDates.push(new Date(game.scheduled))
-      });
+      function noGameToday() {
+        $(".gameData").append("<div class='gameStatus'>No game today...</div>")
+      }
 
-      var todaysDate = new Date(Date.now())
-      var todaysDateString = todaysDate.toDateString();
-      var gameStartTime;
-      var date;
-      var gamesToday = openAngelsGames.filter(function(game) {
-        date = new Date(game.scheduled)
-        if (date.toDateString() == todaysDateString) {
-          gameStartTime = date;
-          gameId = game.id;
-          // console.log(game);
-          return true;
-        } else {
-          return false;
-        }
-      })
-      if (gamesToday.length > 0) {
+      function gameToday() {
+        var rightNow = new Date(Date.now());
         $(".gameData").append("<div class='gameStatus'>Game today!!!</div>")
-        if (todaysDate < gameStartTime) {
+        if (rightNow < gameStartTime) {
           $(".gameData").append("<div class='gameStatus'>...but it hasn't started yet.</div>");
           $(".gameData").append("<div class='gameStatus'>It's scheduled for " + gameStartTime + "</div>");
         } else {
           $("#sendText").prop('disabled',false);
           $(".gameData").append("<div class='gameStatus'>And it's going on now!</div>");
         }
-      } else {
-        $(".gameData").append("<div class='gameStatus'>No game today...</div>")
       }
+
       $("#sendText").on("click", function() {
         $.ajax({
           type: "POST",
