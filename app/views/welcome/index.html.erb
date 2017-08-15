@@ -24,30 +24,32 @@
      Click <a href="https://github.com/MrMicrowaveOven/TroutOnDeck" target="_blank"> here</a> for the github repo.
    </div>
     <script type="text/javascript">
+      function checkForGame() {
+        $.get({
+          data: {},
+          url: "/daily_schedules",
+          datatype: "json",
+          error: function(err) {
+            console.log(err);
+          },
+          success: function(res) {
+            console.log(res);
+            var todaysDate = new Date(Date.now())
+            var todaysDateString = todaysDate.toDateString();
+            var mostRecentScheduledGame = new Date(res.game_time);
+            var mostRecentScheduledGameDateString = mostRecentScheduledGame.toDateString();
 
-      $.get({
-        data: {},
-        url: "/daily_schedules",
-        datatype: "json",
-        error: function(err) {
-          console.log(err);
-        },
-        success: function(res) {
-          console.log(res);
-          var todaysDate = new Date(Date.now())
-          var todaysDateString = todaysDate.toDateString();
-          var mostRecentScheduledGame = new Date(res.game_time);
-          var mostRecentScheduledGameDateString = mostRecentScheduledGame.toDateString();
-
-          if (todaysDateString == mostRecentScheduledGameDateString) {
-            gameStartTime = mostRecentScheduledGame;
-            gameId = res.game_id;
-            gameToday(gameStartTime);
-          } else {
-            noGameToday();
-          }
-        },
-      })
+            if (todaysDateString == mostRecentScheduledGameDateString) {
+              gameStartTime = mostRecentScheduledGame;
+              gameId = res.game_id;
+              gameToday(gameStartTime);
+            } else {
+              noGameToday();
+            }
+          },
+        })
+      }
+      checkForGame();
 
       function noGameToday() {
         $(".gameData").append("<div class='gameStatus'>No game today...</div>")
@@ -65,31 +67,35 @@
         }
       }
 
-      $("#sendText").on("click", function() {
-        $.ajax({
-          type: "POST",
-          url: "/manager?gameId=" + gameId,
-          success: function (res) {
-            console.log(res);
-            $("#sendText").attr("disabled",true);
-            if (res.gameInProgress) {
-              if (res.textSentRecently) {
-                $(".response").html("Text was already sent in the last 10 minutes.")
+      function handleButtonClick() {
+        $("#sendText").on("click", function() {
+          $.ajax({
+            type: "POST",
+            url: "/manager?gameId=" + gameId,
+            success: function (res) {
+              console.log(res);
+              $("#sendText").attr("disabled",true);
+              if (res.gameInProgress) {
+                if (res.textSentRecently) {
+                  $(".response").html("Text was already sent in the last 10 minutes.")
+                } else {
+                  $(".response").html("Text sent!")
+                }
               } else {
-                $(".response").html("Text sent!")
+                $(".response").html("Game is over.")
               }
-            } else {
-              $(".response").html("Game is over.")
+            },
+            error: function (xhr, status, error) {
+              console.log("Error yo");
+              console.log(xhr);
+              console.log(status);
+              console.log(error);
             }
-          },
-          error: function (xhr, status, error) {
-            console.log("Error yo");
-            console.log(xhr);
-            console.log(status);
-            console.log(error);
-          }
-        });
-      })
+          });
+        })
+      }
+      handleButtonClick()
     </script>
+    <!-- <script src="assets/javascripts/welcome.js" type="text/javascript" />  -->
   </body>
 </html>
