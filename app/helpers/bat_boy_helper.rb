@@ -3,6 +3,9 @@ module BatBoyHelper
   require 'json'
 
   class BatBoy
+    ANGELS_STADIUM = "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
+    TROUT_ID = "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
+
     def initialize(game_id)
       @game_pbp = get_game_info(game_id)
     end
@@ -18,7 +21,7 @@ module BatBoyHelper
     end
 
     def angels_home_game?
-      @game_pbp[:game][:venue][:id] == "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
+      @game_pbp[:game][:venue][:id] == ANGELS_STADIUM
     end
 
     def player_at_bat
@@ -37,7 +40,7 @@ module BatBoyHelper
     # end
 
     def trout_at_bat?
-      player_at_bat == "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
+      player_at_bat == TROUT_ID
     end
 
     def trout_on_deck?
