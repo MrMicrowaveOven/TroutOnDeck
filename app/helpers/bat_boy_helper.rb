@@ -4,12 +4,16 @@ module BatBoyHelper
 
   class BatBoy
     def initialize(game_id)
-      url = "https://api.sportradar.us/mlb-t6/games/" + game_id + "/pbp.json?api_key=" + ENV['SPORTRADAR_KEY']
-      response = open(url).read
-      @game_pbp = JSON.parse(response)
+      @game_pbp = get_game_info(game_id)
     end
 
-    def are_angels_home?
+    def get_game_info(game_id)
+      url = "https://api.sportradar.us/mlb-t6/games/" + game_id + "/pbp.json?api_key=" + ENV['SPORTRADAR_KEY']
+      response = open(url).read
+      JSON.parse(response)
+    end
+
+    def angels_home_game?
       @game_pbp["venue"] == "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
     end
 
@@ -48,6 +52,9 @@ module BatBoyHelper
         end
       end
       is_trout_at_bat
+    end
+    def inspect
+      @game_pbp
     end
   end
 end

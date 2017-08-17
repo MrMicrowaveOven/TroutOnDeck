@@ -19,6 +19,5 @@ class DailySchedule < ApplicationRecord
       todaysSchedule.save!
     end
     Commentator.send_schedule_update
-    # gameStatus == "inprogress"
   end
 end

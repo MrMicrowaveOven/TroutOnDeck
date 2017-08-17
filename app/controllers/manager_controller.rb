@@ -2,8 +2,8 @@ require 'open-uri'
 require 'json'
 
 class ManagerController < ApplicationController
-  include ManagerHelper
   skip_before_action :verify_authenticity_token
+  include ManagerHelper
 
   def create
     game_id = params["gameId"]
@@ -15,7 +15,7 @@ class ManagerController < ApplicationController
     jsonResponse["gameInProgress"] = gameInProgress
 
     # jsonResponse["trout_at_bat"] = batboy.trout_at_bat?
-    # jsonResponse["home_game?"] = batboy.are_angels_home?
+    # jsonResponse["home_game?"] = batboy.angels_home_game?
 
     if gameInProgress
       current_time = Time.now
