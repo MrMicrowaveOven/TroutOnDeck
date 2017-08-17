@@ -13,12 +13,12 @@ module BatBoyHelper
       JSON.parse(response, :symbolize_names => true)
     end
 
-    def angels_home_game?
-      @game_pbp[:game][:venue][:id] == "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
+    def game_going_on?
+      @game_pbp[:game][:status] == "inprogress"
     end
 
-    def method_name
-
+    def angels_home_game?
+      @game_pbp[:game][:venue][:id] == "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
     end
 
     def player_at_bat
@@ -26,7 +26,7 @@ module BatBoyHelper
     end
 
     def player_at_bat
-      return nil if !game_going_on
+      return nil if !game_going_on?
       current_inning = @game_pbp[:game][:innings].last
       current_half_inning = current_inning[:halfs].last
       at_bat_events = current_half_inning[:events].select { |event| event[:at_bat]}
@@ -35,9 +35,6 @@ module BatBoyHelper
       current_at_bat[:hitter_id]
     end
 
-    def game_going_on?
-      @game_pbp[:game][:status] == "inprogress"
-    end
 
     def trout_at_bat?
       @player_at_bat == "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
@@ -53,6 +50,7 @@ module BatBoyHelper
       end
       is_trout_at_bat
     end
+    
     def inspect
       @game_pbp
     end

@@ -11,14 +11,26 @@ class BatBoyHelperTest < ActionView::TestCase
     BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
 
     batboy = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
-    assert_equal true, batboy.angels_home_game?
+    assert_equal home_game_over, batboy.inspect
   end
 
   class BatBoy_GameGoingOnTest < ActionView::TestCase
-    test "should know if the game is still going on" do
+    test "returns true if the game is still on" do
+
+    end
+
+    test "returns false if the game is over" do
       BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
       batboy = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
       assert_equal false, batboy.game_going_on?
+    end
+  end
+
+  class BatBoy_PlayerAtBatTest < ActionView::TestCase
+    test "should return nil if game is over" do
+      BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
+      batboy = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+      assert_nil batboy.player_at_bat
     end
   end
 end
