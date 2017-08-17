@@ -1,7 +1,11 @@
 require 'test_helper'
 require_relative 'bat_boy_helper_test_api_returns/home_game_over'
+require_relative 'bat_boy_helper_test_api_returns/three_lineup_changes'
 
 class BatBoyHelperTest < ActionView::TestCase
+  ANGELS_STADIUM = "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
+  ANGELS_TEAM = "4f735188-37c8-473d-ae32-1f7e34ccf892"
+  TROUT_ID = "7f518632-2d5d-48c8-b994-2d4d43a1ef3b"
   def setup
     BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
     @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
@@ -72,6 +76,25 @@ class BatBoyHelperTest < ActionView::TestCase
 
     test "should return true if Trout is at bat" do
 
+    end
+  end
+  class BatBoy_AllLineUpEventsTest < ActionView::TestCase
+    def setup
+      BatBoy.any_instance.stubs(:get_game_info).returns(three_lineup_changes)
+      @batboy_for_three_lineup_changes = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    end
+    test "lists all Angels lineup events" do
+      assert_equal 4, @batboy_for_three_lineup_changes.all_lineup_events.length
+    end
+  end
+
+  class BatBoy_PlayersLineupNumberTest < ActionView::TestCase
+    def setup
+      BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
+      @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    end
+    test "knows his lineup number when there have been no changes since game beginning" do
+      assert_equal 2, @batboy_for_home_game_over.players_lineup_number(TROUT_ID)
     end
   end
 
