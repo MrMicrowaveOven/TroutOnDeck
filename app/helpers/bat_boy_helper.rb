@@ -22,10 +22,6 @@ module BatBoyHelper
     end
 
     def player_at_bat
-      game_going_on? ? player_at_bat : nil
-    end
-
-    def player_at_bat
       return nil if !game_going_on?
       current_inning = @game_pbp[:game][:innings].last
       current_half_inning = current_inning[:halfs].last
@@ -50,7 +46,7 @@ module BatBoyHelper
       end
       is_trout_at_bat
     end
-    
+
     def inspect
       @game_pbp
     end
