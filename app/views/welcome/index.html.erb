@@ -34,6 +34,8 @@
           },
           success: function(res) {
             console.log(res);
+            console.log("https://api.sportradar.us/mlb-t6/games/" + res.game_id + "/pbp.json?api_key=fatd3sdvrexdn49hwyds8ucc");
+            // console.log(res.game_id);
             var todaysDate = new Date(Date.now())
             var todaysDateString = todaysDate.toDateString();
             var mostRecentScheduledGame = new Date(res.game_time);

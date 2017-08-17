@@ -3,12 +3,19 @@ require 'json'
 
 class ManagerController < ApplicationController
   skip_before_action :verify_authenticity_token
+  # helper BatBoyHelper
   def create
     game_id = params["gameId"]
 
     jsonResponse = {}
-    gameInProgress = BatBoy.game_going_on?(game_id)
+
+    batboy = BatBoy.new(game_id)
+    gameInProgress = batboy.game_going_on?
     jsonResponse["gameInProgress"] = gameInProgress
+
+    # jsonResponse["trout_at_bat"] = batboy.trout_at_bat?
+    # jsonResponse["home_game?"] = batboy.are_angels_home?
+
     if gameInProgress
       current_time = Time.now
       last_alert = Alert.all.last
@@ -17,10 +24,11 @@ class ManagerController < ApplicationController
       else
         most_recent_alert_time = Time.new(2000,1,1)
       end
-      # p most_recent_alert
 
       jsonResponse["textSentRecently"] = Time.now - most_recent_alert_time < 600
+
       if !jsonResponse["textSentRecently"]
+        # jsonResponse["trout_at_bat"] = batboy.trout_at_bat?
         marked_time = Alert.new
         marked_time.save!
         Commentator.send_texts
