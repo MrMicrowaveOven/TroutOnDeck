@@ -2,9 +2,7 @@ require 'open-uri'
 require 'json'
 
 class ManagerController < ApplicationController
-
-  include BatBoyHelper
-
+  include ManagerHelper
   skip_before_action :verify_authenticity_token
 
   def create
