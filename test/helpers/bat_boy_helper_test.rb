@@ -80,6 +80,9 @@ class BatBoyHelperTest < ActionView::TestCase
       BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
       @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
     end
+    test "returns false if game is over" do
+      assert_equal false, @batboy_for_home_game_over.trout_on_deck?
+    end
     test "returns false if Trout is not on deck" do
 
     end

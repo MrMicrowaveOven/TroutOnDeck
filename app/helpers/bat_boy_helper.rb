@@ -22,29 +22,31 @@ module BatBoyHelper
     end
 
     def player_at_bat
+      return @player_at_bat if @player_at_bat
       return nil if !game_going_on?
       current_inning = @game_pbp[:game][:innings].last
-      current_half_inning = current_inning[:halfs].last
+      current_half_inning = current_inning[:halfs].select {|inning_half| inning_half[:events].any?}.last
       at_bat_events = current_half_inning[:events].select { |event| event[:at_bat]}
       return nil if at_bat_events.empty?
       current_at_bat = at_bat_events.last
-      current_at_bat[:hitter_id]
+      @player_at_bat = current_at_bat[:hitter_id]
     end
 
+    # def at_bats_place_in_lineup
+    #
+    # end
 
     def trout_at_bat?
-      @player_at_bat == "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
+      player_at_bat == "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
     end
 
     def trout_on_deck?
-      is_trout_on_deck = false
-      @game_pbp[:innings].last[:halfs].each do |half|
-        player_at_bat = half[:events].last[:at_bat][:hitter_id]
-        if player_at_bat == "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
-          is_trout_at_bat = true
-        end
-      end
-      is_trout_at_bat
+      return false if !game_going_on?
+      # is_trout_on_deck = false
+      # if player_at_bat == "f502c299-d8a3-44ec-a5c1-b2b0010fb28d"
+      #   is_trout_at_bat = true
+      # end
+      # is_trout_at_bat
     end
 
     def inspect
