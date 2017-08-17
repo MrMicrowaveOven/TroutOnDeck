@@ -39,13 +39,7 @@ module BatBoyHelper
           half[:events].each do |event|
             if event.keys.first == :lineup
               lineup = event[:lineup]
-              event_deets = {
-                # inning: inning_number,
-                player_id: lineup[:player_id],
-                order: lineup[:order],
-                # team_id: lineup[:team_id]
-              }
-              lineup_events << event_deets
+              lineup_events << { player_id: lineup[:player_id], order: lineup[:order] }
             end
           end
         end

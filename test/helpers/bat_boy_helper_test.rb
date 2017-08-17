@@ -93,8 +93,12 @@ class BatBoyHelperTest < ActionView::TestCase
       BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
       @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
     end
-    test "knows his lineup number when there have been no changes since game beginning" do
+    test "knows someone's lineup number when there have been no changes since game beginning" do
       assert_equal 2, @batboy_for_home_game_over.players_lineup_number(TROUT_ID)
+    end
+    test "knows someone's lineup number after changes" do
+      assert_equal 6, @batboy_for_home_game_over.players_lineup_number("68298270-9c8e-4139-a8f8-632151fb7077")
+      assert_equal 8, @batboy_for_home_game_over.players_lineup_number("9de4255a-b1d5-455d-bde9-0ae9633e5495")
     end
   end
 
