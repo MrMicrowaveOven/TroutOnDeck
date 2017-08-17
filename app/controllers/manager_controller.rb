@@ -2,8 +2,11 @@ require 'open-uri'
 require 'json'
 
 class ManagerController < ApplicationController
+
+  include BatBoyHelper
+
   skip_before_action :verify_authenticity_token
-  # helper BatBoyHelper
+
   def create
     game_id = params["gameId"]
 
