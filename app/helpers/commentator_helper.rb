@@ -13,6 +13,7 @@ module CommentatorHelper
         :body => 'Schedule has been updated!',
         # :media_url => 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg',
       })
+      return "Update sent!"
     end
     def self.send_texts
       account_sid = ENV['TWILLIO_SID']

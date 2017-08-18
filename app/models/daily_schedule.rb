@@ -3,6 +3,7 @@ require 'json'
 require 'date'
 
 class DailySchedule < ApplicationRecord
+  include CommentatorHelper
   def self.update_schedule
     current_date = Date.today
     current_year = current_date.year

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class DailyScheduleTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
+  # test "sends text alert to me" do
+  #   DailySchedule.update_schedule
   # end
 end
