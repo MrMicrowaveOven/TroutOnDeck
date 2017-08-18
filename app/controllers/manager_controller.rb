@@ -6,16 +6,16 @@ class ManagerController < ApplicationController
   include ManagerHelper
 
   def create
-    game_id = params["gameId"]
+    game_id = params[:gameId]
 
     jsonResponse = {}
 
     batboy = BatBoy.new(game_id)
     gameInProgress = batboy.game_going_on?
-    jsonResponse["gameInProgress"] = gameInProgress
+    jsonResponse[:gameInProgress] = gameInProgress
 
-    # jsonResponse["trout_at_bat"] = batboy.trout_at_bat?
-    # jsonResponse["home_game?"] = batboy.angels_home_game?
+    # jsonResponse[:trout_at_bat] = batboy.trout_at_bat?
+    # jsonResponse[:home_game?] = batboy.angels_home_game?
 
     if gameInProgress
       current_time = Time.now
@@ -26,10 +26,10 @@ class ManagerController < ApplicationController
         most_recent_alert_time = Time.new(2000,1,1)
       end
 
-      jsonResponse["textSentRecently"] = Time.now - most_recent_alert_time < 600
+      jsonResponse[:textSentRecently] = Time.now - most_recent_alert_time < 600
 
-      if !jsonResponse["textSentRecently"]
-        # jsonResponse["trout_at_bat"] = batboy.trout_at_bat?
+      if !jsonResponse[:textSentRecently]
+        # jsonResponse[:trout_at_bat] = batboy.trout_at_bat?
         marked_time = Alert.new
         marked_time.save!
         Commentator.send_texts
