@@ -18,15 +18,7 @@ class ManagerController < ApplicationController
     # jsonResponse[:home_game?] = batboy.angels_home_game?
 
     if gameInProgress
-      current_time = Time.now
-      last_alert = Alert.all.last
-      if last_alert
-        most_recent_alert_time = Alert.all.last.created_at
-      else
-        most_recent_alert_time = Time.new(2000,1,1)
-      end
-
-      jsonResponse[:textSentRecently] = Time.now - most_recent_alert_time < 600
+      jsonResponse[:textSentRecently] = Alert.text_sent_recently
 
       if !jsonResponse[:textSentRecently]
         # jsonResponse[:trout_at_bat] = batboy.trout_at_bat?
