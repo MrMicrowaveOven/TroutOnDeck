@@ -8,20 +8,19 @@ class ManagerController < ApplicationController
   def create
     game_id = params[:gameId]
 
-    jsonResponse = {}
 
     batboy = BatBoy.new(game_id)
     gameInProgress = batboy.game_going_on?
-    jsonResponse[:gameInProgress] = gameInProgress
 
-    # jsonResponse[:trout_at_bat] = batboy.trout_at_bat?
-    # jsonResponse[:home_game?] = batboy.angels_home_game?
+    jsonResponse = {
+      gameInProgress: gameInProgress,
+      textSentRecently: Alert.text_sent_recently?,
+      troutAtBat: batboy.trout_at_bat?,
+      troutOnDeck: batboy.trout_on_deck?
+    }
 
-    if gameInProgress
-      jsonResponse[:textSentRecently] = Alert.text_sent_recently
-
-      if !jsonResponse[:textSentRecently]
-        # jsonResponse[:trout_at_bat] = batboy.trout_at_bat?
+    if gameInProgress && !jsonResponse[:textSentRecently]
+      if jsonResponse[:troutAtBat] || jsonResponse[:troutOnDeck]
         marked_time = Alert.new
         marked_time.save!
         Commentator.send_texts

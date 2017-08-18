@@ -1,5 +1,5 @@
 class Alert < ApplicationRecord
-    def self.text_sent_recently
+    def self.text_sent_recently?
       last_alert = Alert.all.last
       if last_alert
         most_recent_alert_time = Alert.all.last.created_at
