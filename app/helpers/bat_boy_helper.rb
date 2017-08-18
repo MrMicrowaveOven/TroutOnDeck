@@ -21,8 +21,14 @@ module BatBoyHelper
 
     def trout_on_deck?
       return false if !game_going_on?
-      players_lineup_number(player_at_bat) == players_lineup_number(TROUT_ID) + 1
+      players_lineup_number(player_at_bat) == players_lineup_number(TROUT_ID) - 1
     end
+
+    def inspect
+      @game_pbp
+    end
+
+    private
 
     def get_game_info(game_id)
       url = "https://api.sportradar.us/mlb-t6/games/" + game_id + "/pbp.json?api_key=" + ENV['SPORTRADAR_KEY']
@@ -65,10 +71,6 @@ module BatBoyHelper
       return nil if at_bat_events.empty?
       current_at_bat = at_bat_events.last
       @player_at_bat = current_at_bat[:hitter_id]
-    end
-
-    def inspect
-      @game_pbp
     end
   end
 end

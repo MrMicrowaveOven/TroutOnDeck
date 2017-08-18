@@ -20,6 +20,7 @@ class BatBoyHelperTest < ActionView::TestCase
 
   class BatBoy_GameGoingOnTest < ActionView::TestCase
     def setup
+      BatBoy.send(:public, *BatBoy.private_instance_methods)
       BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
       @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
     end
@@ -49,6 +50,7 @@ class BatBoyHelperTest < ActionView::TestCase
 
   class BatBoy_PlayerAtBatTest < ActionView::TestCase
     def setup
+      BatBoy.send(:public, *BatBoy.private_instance_methods)
       BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
       @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
     end
@@ -80,6 +82,7 @@ class BatBoyHelperTest < ActionView::TestCase
   end
   class BatBoy_AllLineUpEventsTest < ActionView::TestCase
     def setup
+      BatBoy.send(:public, *BatBoy.private_instance_methods)
       BatBoy.any_instance.stubs(:get_game_info).returns(three_lineup_changes)
       @batboy_for_three_lineup_changes = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
     end
@@ -90,6 +93,7 @@ class BatBoyHelperTest < ActionView::TestCase
 
   class BatBoy_PlayersLineupNumberTest < ActionView::TestCase
     def setup
+      BatBoy.send(:public, *BatBoy.private_instance_methods)
       BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
       @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
     end
