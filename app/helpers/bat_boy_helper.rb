@@ -21,6 +21,8 @@ module BatBoyHelper
     end
 
     def trout_at_bat?
+      # p player_at_bat
+      # p TROUT_ID
       player_at_bat == TROUT_ID
     end
 
@@ -70,7 +72,9 @@ module BatBoyHelper
       at_bat_events = current_half_inning[:events].select { |event| event[:at_bat]}
       return nil if at_bat_events.empty?
       current_at_bat = at_bat_events.last
-      @player_at_bat = current_at_bat[:hitter_id]
+      # p "==================="
+      # p current_at_bat
+      @player_at_bat = current_at_bat[:at_bat][:hitter_id]
     end
   end
 end
