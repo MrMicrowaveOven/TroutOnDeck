@@ -15,13 +15,13 @@ module BatBoyHelper
       @game_pbp[:game][:status] == "inprogress"
     end
 
-    def trout_at_bat?
-      player_at_bat == TROUT_ID
-    end
-
     def trout_on_deck?
       return false if !game_going_on?
       players_lineup_number(player_at_bat) == players_lineup_number(TROUT_ID) - 1
+    end
+
+    def trout_at_bat?
+      player_at_bat == TROUT_ID
     end
 
     def inspect

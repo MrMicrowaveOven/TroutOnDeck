@@ -1,5 +1,4 @@
-def three_lineup_changes
-  {
+{
 "game": {
 "id": "d4255efe-aa93-4ee6-8812-518f127f9769",
 "status": "closed",
@@ -2979,4 +2978,3 @@ def three_lineup_changes
 },
 "_comment": "Generation started @ 2017-08-09 22:48:38 UTC ended @ 2017-08-09 22:48:41 UTC"
 }
-end

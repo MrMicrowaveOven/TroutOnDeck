@@ -1,6 +1,5 @@
 require 'test_helper'
-require_relative 'bat_boy_helper_test_api_returns/home_game_over'
-require_relative 'bat_boy_helper_test_api_returns/three_lineup_changes'
+require 'json'
 
 class BatBoyHelperTest < ActionView::TestCase
   ANGELS_STADIUM = "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
@@ -8,10 +7,122 @@ class BatBoyHelperTest < ActionView::TestCase
   TROUT_ID = "7f518632-2d5d-48c8-b994-2d4d43a1ef3b"
   def setup
     BatBoy.send(:public, *BatBoy.private_instance_methods)
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_AngelsJustMadeLastOutHomeTeamDue.json')
+    angels_about_to_bat = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(angels_about_to_bat)
+    @batboy_for_angels_about_to_bat = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole.json')
+    trout_in_hole1 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole1)
+    @batboy_for_trout_in_hole1 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole2.json')
+    trout_in_hole2 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole2)
+    @batboy_for_trout_in_hole2 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole3.json')
+    trout_in_hole3 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole3)
+    @batboy_for_trout_in_hole3 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutAtBat.json')
+    trout_at_bat1 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_at_bat1)
+    @batboy_for_trout_at_bat1 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutAtBatDone.json')
+    trout_at_bat_done = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_at_bat_done)
+    @batboy_for_trout_at_bat_done = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutBatting2.json')
+    trout_batting_2 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_batting_2)
+    @batboy_for_trout_batting_2 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck.json')
+    trout_on_deck_1 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_1)
+    @batboy_for_trout_on_deck_1 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck2.json')
+    trout_on_deck_2 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_2)
+    @batboy_for_trout_on_deck_2 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck3.json')
+    trout_on_deck_3 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_3)
+    @batboy_for_trout_on_deck_3 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0819_Away_Hitting_FirstPitch_TroutOnDeck_FPT.json')
+    trout_on_deck_fpt = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_fpt)
+    @batboy_for_trout_on_deck_fpt = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0822_Home_Hitting_TroutJustStruckOut_FPNT.json')
+    trout_just_struck_out = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_just_struck_out)
+    @batboy_for_trout_just_struck_out = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0822_Home_Hitting_TroutOnDeckAtBottomOfInning.json')
+    trout_on_deck_bottom_of_inning = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_bottom_of_inning)
+    @batboy_for_trout_on_deck_bottom_of_inning = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_Hitting_TroutInHole.json')
+    trout_in_hole4 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole4)
+    @batboy_for_trout_in_hole4 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_Hitting_TroutOnDeck.json')
+    trout_on_deck_4 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_4)
+    @batboy_for_trout_on_deck_4 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_InningHalfJustFinished_TroutOnDeck.json')
+    trout_on_deck_5 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_5)
+    @batboy_for_trout_on_deck_5 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Field_TroutOnDeck_InningNotOver.json')
+    trout_on_deck_inning_not_over = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_inning_not_over)
+    @batboy_for_trout_on_deck_inning_not_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutBatting_FPT.json')
+    trout_batting_3 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_batting_3)
+    @batboy_for_trout_batting_3 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutOnDeck_FPNT.json')
+    trout_on_deck_6 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_6)
+    @batboy_for_trout_on_deck_6 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutOnDeck_FPT.json')
+    trout_on_deck_7 = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_7)
+    @batboy_for_trout_on_deck_7 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/AwayBatterJoeyHit6thInning.json')
+    player_hit = JSON.parse(file, :symbolize_names => true)
+    BatBoy.any_instance.stubs(:get_game_info).returns(player_hit)
+    @batboy_for_player_hit = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/home_game_over.json')
+    home_game_over = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(home_game_over)
     @batboy_for_home_game_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/three_lineup_changes.json')
+    three_lineup_changes = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(three_lineup_changes)
     @batboy_for_three_lineup_changes = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+
   end
 
   test "should stub call to API properly" do
@@ -20,49 +131,64 @@ class BatBoyHelperTest < ActionView::TestCase
   end
 
   test "should use stubbed version of game JSON" do
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/home_game_over.json')
+    home_game_over = JSON.parse(file, :symbolize_names => true)
     assert_equal home_game_over, @batboy_for_home_game_over.inspect
   end
 
+  # ====================================================================
 
   test "game_going_on? ~~ returns true if the game is still on" do
+    assert_equal true, @batboy_for_trout_batting_2.game_going_on?
+    # assert_equal true, @batboy_for_trout_on_deck_1.game_going_on?
   end
 
   test "game_going_on? ~~ returns false if the game is over" do
     assert_equal false, @batboy_for_home_game_over.game_going_on?
   end
 
+# ====================================================================
 
-  test "angels_home_game? ~~ returns true if venue is Angel's stadium" do
-    assert_equal true, @batboy_for_home_game_over.angels_home_game?
+  test "trout_on_deck? ~~ returns false if game is over" do
+    assert_equal false, @batboy_for_home_game_over.trout_on_deck?
   end
 
-  test "angels_home_game? ~~ returns false if venue is not Angel's stadium" do
+  test "trout_on_deck? ~~ returns false if Trout is not on deck" do
+    # assert_equal false, @batboy_for_trout_at_bat_1.trout_on_deck?
   end
 
-
-  test "player_at_bat ~~ should return nil if game is over" do
-    assert_nil @batboy_for_home_game_over.player_at_bat
+  test "trout_on_deck? ~~ returns false if Trout is at bat" do
+    # assert_equal false, @batboy_for_trout_at_bat_1.trout_on_deck?
   end
 
-  test "player_at_bat ~~ should return player id if a player is at bat" do
+  test "trout_on_deck? ~~ returns false if Angels are pitching" do
   end
 
+  test "trout_on_deck? ~~ returns true if Trout is on deck" do
+    # assert_equal true, @batboy_for_trout_on_deck_1.trout_on_deck?
+  end
+
+  # ====================================================================
 
   test "trout_at_bat? ~~ should return false if game is over" do
     assert_equal false, @batboy_for_home_game_over.trout_at_bat?
   end
 
   test "trout_at_bat? ~~ should return false if another player is at bat" do
+    # assert_equal false, @batboy_for_trout_on_deck_1.trout_at_bat?
   end
 
   test "trout_at_bat? ~~ should return true if Trout is at bat" do
+    # assert_equal true, @batboy_for_trout_at_bat_1.trout_at_bat?
   end
 
+  # ======================Private_Methods=============================
 
   test "all_lineup_events ~~ lists all Angels lineup events" do
     assert_equal 4, @batboy_for_three_lineup_changes.all_lineup_events.length
   end
 
+# ====================================================================
 
   test "players_lineup_number ~~ knows someone's lineup number when there have been no changes since game beginning" do
     assert_equal 2, @batboy_for_home_game_over.players_lineup_number(TROUT_ID)
@@ -73,20 +199,25 @@ class BatBoyHelperTest < ActionView::TestCase
     assert_equal 8, @batboy_for_home_game_over.players_lineup_number("9de4255a-b1d5-455d-bde9-0ae9633e5495")
   end
 
+# ====================================================================
 
-  test "trout_on_deck? ~~ returns false if game is over" do
-    assert_equal false, @batboy_for_home_game_over.trout_on_deck?
+  test "angels_home_game? ~~ returns true if venue is Angel's stadium" do
+    assert_equal true, @batboy_for_home_game_over.angels_home_game?
   end
 
-  test "trout_on_deck? ~~ returns false if Trout is not on deck" do
+  test "angels_home_game? ~~ returns false if venue is not Angel's stadium" do
+    # assert_equal false, @batboy_for_trout_at_bat_1.angels_home_game?
+    # assert_equal false, @batboy_for_trout_on_deck_1.angels_home_game?
   end
 
-  test "trout_on_deck? ~~ returns false if Trout is at bat" do
+# ====================================================================
+
+  test "player_at_bat ~~ should return nil if game is over" do
+    assert_nil @batboy_for_home_game_over.player_at_bat
   end
 
-  test "trout_on_deck? ~~ returns false if Angels are pitching" do
+  test "player_at_bat ~~ should return player id if a player is at bat" do
+    # assert_equal TROUT_ID, @batboy_for_trout_at_bat_1.player_at_bat
   end
 
-  test "trout_on_deck? ~~ returns true if Trout is on deck" do
-  end
 end
