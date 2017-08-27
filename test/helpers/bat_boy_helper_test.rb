@@ -8,110 +8,110 @@ class BatBoyHelperTest < ActionView::TestCase
   def setup
     BatBoy.send(:public, *BatBoy.private_instance_methods)
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_AngelsJustMadeLastOutHomeTeamDue.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_AngelsJustMadeLastOutHomeTeamDue_FF.json')
     angels_about_to_bat = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(angels_about_to_bat)
-    @batboy_for_angels_about_to_bat = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_angels_about_to_bat_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole_FF.json')
     trout_in_hole1 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole1)
-    @batboy_for_trout_in_hole1 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_in_hole1_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole2.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole2_FF.json')
     trout_in_hole2 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole2)
-    @batboy_for_trout_in_hole2 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_in_hole2_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole3.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Field_TroutinHole3_FF.json')
     trout_in_hole3 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole3)
-    @batboy_for_trout_in_hole3 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_in_hole3_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutAtBat.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutAtBat_FT.json')
     trout_at_bat1 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_at_bat1)
-    @batboy_for_trout_at_bat1 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_at_bat1_ft = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutAtBatDone.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutAtBatDone_FF.json')
     trout_at_bat_done = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_at_bat_done)
-    @batboy_for_trout_at_bat_done = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_at_bat_done_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutBatting2.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutBatting2_FT.json')
     trout_batting_2 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_batting_2)
-    @batboy_for_trout_batting_2 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_batting_2_ft = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck_TF.json')
     trout_on_deck_1 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_1)
-    @batboy_for_trout_on_deck_1 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_1_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck2.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck2_TF.json')
     trout_on_deck_2 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_2)
-    @batboy_for_trout_on_deck_2 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_2_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck3.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0818_Away_Hitting_TroutOnDeck3_TF.json')
     trout_on_deck_3 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_3)
-    @batboy_for_trout_on_deck_3 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_3_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0819_Away_Hitting_FirstPitch_TroutOnDeck_FPT.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0819_Away_Hitting_FirstPitch_TroutOnDeck_FPT_TF.json')
     trout_on_deck_fpt = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_fpt)
-    @batboy_for_trout_on_deck_fpt = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_fpt_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0822_Home_Hitting_TroutJustStruckOut_FPNT.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0822_Home_Hitting_TroutJustStruckOut_FPNT_FF.json')
     trout_just_struck_out = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_just_struck_out)
-    @batboy_for_trout_just_struck_out = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_just_struck_out_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0822_Home_Hitting_TroutOnDeckAtBottomOfInning.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0822_Home_Hitting_TroutOnDeckAtBottomOfInning_TF.json')
     trout_on_deck_bottom_of_inning = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_bottom_of_inning)
-    @batboy_for_trout_on_deck_bottom_of_inning = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_bottom_of_inning_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_Hitting_TroutInHole.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_Hitting_TroutInHole_FF.json')
     trout_in_hole4 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_in_hole4)
-    @batboy_for_trout_in_hole4 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_in_hole4_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_Hitting_TroutOnDeck.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_Hitting_TroutOnDeck_TF.json')
     trout_on_deck_4 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_4)
-    @batboy_for_trout_on_deck_4 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_4_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_InningHalfJustFinished_TroutOnDeck.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0824_Home_InningHalfJustFinished_TroutOnDeck_TF.json')
     trout_on_deck_5 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_5)
-    @batboy_for_trout_on_deck_5 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_5_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Field_TroutOnDeck_InningNotOver.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Field_TroutOnDeck_InningNotOver_TF.json')
     trout_on_deck_inning_not_over = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_inning_not_over)
-    @batboy_for_trout_on_deck_inning_not_over = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_inning_not_over_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutBatting_FPT.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutBatting_FPT_FT.json')
     trout_batting_3 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_batting_3)
-    @batboy_for_trout_batting_3 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_batting_3_ft = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutOnDeck_FPNT.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutOnDeck_FPNT_TF.json')
     trout_on_deck_6 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_6)
-    @batboy_for_trout_on_deck_6 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_6_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutOnDeck_FPT.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/0827_Home_Hitting_TroutOnDeck_FPT_TF.json')
     trout_on_deck_7 = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(trout_on_deck_7)
-    @batboy_for_trout_on_deck_7 = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_trout_on_deck_7_tf = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
-    file = File.read('test/helpers/bat_boy_helper_test_api_returns/AwayBatterJoeyHit6thInning.json')
+    file = File.read('test/helpers/bat_boy_helper_test_api_returns/AwayBatterJoeyHit6thInning_FF.json')
     player_hit = JSON.parse(file, :symbolize_names => true)
     BatBoy.any_instance.stubs(:get_game_info).returns(player_hit)
-    @batboy_for_player_hit = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
+    @batboy_for_player_hit_ff = BatBoy.new("d7a9a7c5-958b-453b-8789-5bc9469a8e7c")
 
     file = File.read('test/helpers/bat_boy_helper_test_api_returns/home_game_over.json')
     home_game_over = JSON.parse(file, :symbolize_names => true)
@@ -139,7 +139,7 @@ class BatBoyHelperTest < ActionView::TestCase
   # ====================================================================
 
   test "game_going_on? ~~ returns true if the game is still on" do
-    assert_equal true, @batboy_for_trout_batting_2.game_going_on?
+    assert_equal true, @batboy_for_trout_batting_2_ft.game_going_on?
     # assert_equal true, @batboy_for_trout_on_deck_1.game_going_on?
   end
 
