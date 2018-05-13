@@ -41,9 +41,9 @@
             var mostRecentScheduledGame = new Date(res.game_time);
             var mostRecentScheduledGameDateString = mostRecentScheduledGame.toDateString();
 
-            console.log(todaysDateString)
-            console.log(mostRecentScheduledGameDateString)
-            console.log(todaysDateString == mostRecentScheduledGameDateString)
+            console.log(todaysDate)
+            console.log(mostRecentScheduledGame)
+            console.log(todaysDate == mostRecentScheduledGame)
 
             if (todaysDateString == mostRecentScheduledGameDateString) {
               gameStartTime = mostRecentScheduledGame;
