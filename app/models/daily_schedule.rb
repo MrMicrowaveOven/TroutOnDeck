@@ -10,6 +10,7 @@ class DailySchedule < ApplicationRecord
     current_year = current_date.year
     current_month = current_date.month
     current_day = current_date.day
+    p "#{current_month}/#{current_day}/#{current_year}"
 
     begin
       api_url = 'https://api.sportradar.us/mlb-t6/games/' + current_year.to_s + '/' + current_month.to_s + '/' + current_day.to_s + '/schedule.json?api_key=' + ENV['SPORTRADAR_KEY']
