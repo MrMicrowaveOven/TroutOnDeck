@@ -6,7 +6,7 @@ require 'rest_client'
 class DailySchedule < ApplicationRecord
   include CommentatorHelper
   def self.update_schedule
-    current_date = Date.today
+    current_date = Date.today - 7.hours
     current_year = current_date.year
     current_month = current_date.month
     current_day = current_date.day
