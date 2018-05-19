@@ -35,17 +35,10 @@
             console.log(err);
           },
           success: function(res) {
-            console.log(res);
-            console.log("https://api.sportradar.us/mlb-t6/games/" + res.game_id + "/pbp.json?api_key=fatd3sdvrexdn49hwyds8ucc");
-            // console.log(res.game_id);
             var todaysDate = new Date(Date.now())
             var todaysDateString = todaysDate.toDateString();
             var mostRecentScheduledGame = new Date(res.game_time);
             var mostRecentScheduledGameDateString = mostRecentScheduledGame.toDateString();
-
-            console.log(todaysDate)
-            console.log(mostRecentScheduledGame)
-            console.log(todaysDate == mostRecentScheduledGame)
 
             if (todaysDateString == mostRecentScheduledGameDateString) {
               gameStartTime = mostRecentScheduledGame;
@@ -68,7 +61,10 @@
         $(".gameData").append("<div class='gameStatus'>Game today!!!</div>")
         if (rightNow < gameStartTime) {
           $(".gameData").append("<div class='gameStatus'>...but it hasn't started yet.</div>");
-          $(".gameData").append("<div class='gameStatus'>It's scheduled for " + gameStartTime + "</div>");
+          var gameTimeHours = gameStartTime.getHours();
+          var gameTimeMinutes = gameStartTime.getMinutes() > 9 ? gameStartTime.getMinutes() : "0" + gameStartTime.getMinutes();
+          var gameTimeString = gameTimeHours + ":" + gameTimeMinutes;
+          $(".gameData").append("<div class='gameStatus'>It's scheduled for " + gameTimeString + " in your timezone.</div>");
         } else {
           $("#sendText").prop('disabled',false);
           $(".gameData").append("<div class='gameStatus'>And it's going on now!</div>");
