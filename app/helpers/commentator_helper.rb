@@ -15,6 +15,7 @@ module CommentatorHelper
       })
       return "Update sent!"
     end
+
     def self.send_texts
       account_sid = ENV['TWILLIO_SID']
       auth_token = ENV['TWILLIO_TOKEN']
