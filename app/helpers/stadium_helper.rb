@@ -4,6 +4,8 @@ module StadiumHelper
   class Stadium
     def initialize(game_time, game_id)
       p "SLEEP BEGINNING"
+      p game_time
+      p Time.now
       sleep(game_time - Time.now)
       p "GAMEON!!!"
       200.times do |index|
