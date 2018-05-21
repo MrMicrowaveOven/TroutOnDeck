@@ -82,8 +82,12 @@
               if (res.gameInProgress) {
                 if (res.textSentRecently) {
                   $(".response").html("Text was already sent in the last 10 minutes.")
+                } else if (res.troutOnDeck){
+                  $(".response").html("Trout is in fact on Deck.  Sending the text now.")
+                } else if (res.troutAtBat) {
+                  $(".response").html("Trout is at bat!  Sending the text now.")
                 } else {
-                  $(".response").html("Text sent!")
+                  $(".response").html("Trout is neither on Deck nor at bat right now.  Text has not been sent.")
                 }
               } else {
                 $(".response").html("Game is over.")
