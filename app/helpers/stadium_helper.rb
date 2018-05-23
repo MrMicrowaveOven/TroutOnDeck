@@ -8,7 +8,7 @@ module StadiumHelper
       p Time.now
       # Call Dead Man's Snitch that sleep is beginning
       Snitcher.snitch("1a87a8c24a", message: "Sleep is beginning!!!")
-      sleep(game_time - Time.now)
+      # sleep(game_time - Time.now)
       Snitcher.snitch("1a87a8c24a", message: "Game is beginning!!!")
       p "GAMEON!!!"
       200.times do |index|
