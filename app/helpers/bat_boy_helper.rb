@@ -21,8 +21,6 @@ module BatBoyHelper
     end
 
     def trout_at_bat?
-      # p player_at_bat
-      # p TROUT_ID
       player_at_bat == TROUT_ID
     end
 
@@ -57,6 +55,7 @@ module BatBoyHelper
 
     def players_lineup_number(player_id)
       players_lineup_events = all_lineup_events.select {|event| event[:player_id] == player_id}
+      return false unless players_lineup_events.last
       players_lineup_events.last[:order]
     end
 
@@ -69,7 +68,10 @@ module BatBoyHelper
       return nil if !game_going_on?
       current_inning = @game_pbp[:game][:innings].last
       current_half_inning = current_inning[:halfs].select {|inning_half| inning_half[:events].any?}.last
-      at_bat_events = current_half_inning[:events].select { |event| event[:at_bat]}
+      at_bat_events = current_half_inning[:events].select do |event|
+        p event
+        return event[:at_bat]
+      end
       return nil if at_bat_events.empty?
       current_at_bat = at_bat_events.last
       # p "==================="
