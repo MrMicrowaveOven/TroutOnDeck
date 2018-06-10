@@ -6,6 +6,7 @@ module BatBoyHelper
     ANGELS_STADIUM = "60732da9-ad03-4feb-9a36-aee3e98c7a2b"
     ANGELS_TEAM = "4f735188-37c8-473d-ae32-1f7e34ccf892"
     TROUT_ID = "7f518632-2d5d-48c8-b994-2d4d43a1ef3b"
+    attr_reader :url
 
     def initialize(game_id)
       @game_pbp = get_game_info(game_id)
@@ -32,6 +33,7 @@ module BatBoyHelper
 
     def get_game_info(game_id)
       url = "https://api.sportradar.us/mlb-t6/games/" + game_id + "/pbp.json?api_key=" + ENV['SPORTRADAR_KEY']
+      @url = url
       response = open(url).read
       JSON.parse(response, :symbolize_names => true)
     end

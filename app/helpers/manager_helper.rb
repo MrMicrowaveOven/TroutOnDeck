@@ -10,7 +10,8 @@ module ManagerHelper
       gameInProgress: gameInProgress,
       textSentRecently: Alert.text_sent_recently?,
       troutAtBat: batboy.trout_at_bat?,
-      troutOnDeck: batboy.trout_on_deck?
+      troutOnDeck: batboy.trout_on_deck?,
+      url: batboy.url
     }
 
     if gameInProgress && !jsonResponse[:textSentRecently]

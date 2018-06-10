@@ -19,6 +19,8 @@
      <div class="response">
 
      </div>
+     <div class="urlButton">
+     </div>
    </div>
    <div class= "portfolioLinks" id="portfolioLinks">
      Written by Benjamin Zagorski.
@@ -92,6 +94,7 @@
               } else {
                 $(".response").html("Game is over.")
               }
+              $(".urlButton").html("<br><a href='" + res.url + "' target='_blank'>Take me to the JSON!</a>")
             },
             error: function (xhr, status, error) {
               console.log("Error yo");
