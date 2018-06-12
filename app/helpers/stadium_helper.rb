@@ -9,10 +9,16 @@ module StadiumHelper
       # Call Dead Man's Snitch that sleep is beginning
       Snitcher.snitch("1a87a8c24a", message: "Sleep is beginning!!!")
       seconds_until_game = DateTime.parse(game_time).to_i - Time.now.to_i
-      (seconds_until_game / 1000).times do |i|
+      (seconds_until_game / 60).times do |i|
         Snitcher.snitch("1a87a8c24a", message: "Sleeping... index: #{i}, time: #{Time.now}")
-        p "Sleeping... index: #{i}, time: #{Time.now}"
-        sleep(1000)
+        # p "Sleeping... index: #{i}, time: #{Time.now}"
+        # p "Gametime: #{game_time}"
+        # p game_time.to_i
+        # p DateTime.parse(game_time).to_i
+        # p Time.now.to_i
+        # p seconds_until_game
+        # p "Gametime in about #{(DateTime.parse(game_time).to_i - Time.now.to_i)/3600} hours"
+        sleep(60)
       end
       Snitcher.snitch("1a87a8c24a", message: "Game is beginning!!!")
       p "GAMEON!!!"
