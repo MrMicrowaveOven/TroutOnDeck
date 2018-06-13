@@ -10,7 +10,7 @@ module StadiumHelper
       Snitcher.snitch("1a87a8c24a", message: "Sleep is beginning!!!")
       seconds_until_game = DateTime.parse(game_time).to_i - Time.now.to_i
       (seconds_until_game / 60).times do |i|
-        Snitcher.snitch("1a87a8c24a", message: "Sleeping... index: #{i}, time: #{Time.now}")
+        Snitcher.snitch("1a87a8c24a", message: "Sleeping: index: #{i}, time: #{Time.now.to_i}, game_time: #{game_time.to_i}")
         # p "Sleeping... index: #{i}, time: #{Time.now}"
         # p "Gametime: #{game_time}"
         # p game_time.to_i
@@ -28,9 +28,11 @@ module StadiumHelper
         break if !at_bat_info[:gameInProgress] && index > 10
         if at_bat_info[:troutOnDeck] || at_bat_info[:troutAtBat]
           Snitcher.snitch("1a87a8c24a", message: "Text was sent, #{index}")
-          sleep 15
+          p "Text was sent"
+          sleep 900
         else
-          sleep 2
+          p "No text sent"
+          sleep 120
         end
       end
     end
