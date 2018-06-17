@@ -32,10 +32,14 @@ module BatBoyHelper
     private
 
     def get_game_info(game_id)
-      url = "https://api.sportradar.us/mlb-t6/games/" + game_id + "/pbp.json?api_key=" + ENV['SPORTRADAR_KEY']
-      @url = url
-      response = open(url).read
-      JSON.parse(response, :symbolize_names => true)
+      begin
+        url = "https://api.sportradar.us/mlb-t6/games/" + game_id + "/pbp.json?api_key=" + ENV['SPORTRADAR_KEY']
+        @url = url
+        response = open(url).read
+        JSON.parse(response, :symbolize_names => true)
+      rescue Exception => e
+        ap e
+      end
     end
 
     def all_lineup_events
