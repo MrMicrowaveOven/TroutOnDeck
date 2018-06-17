@@ -4,8 +4,8 @@ module StadiumHelper
   class Stadium
     def initialize(game_time, game_id)
       p "SLEEP BEGINNING"
-      p game_time
-      p Time.now
+      p DateTime.parse(game_time).to_i
+      p Time.now.to_i
       # Call Dead Man's Snitch that sleep is beginning
       Snitcher.snitch("1a87a8c24a", message: "Sleep is beginning!!!")
       seconds_until_game = DateTime.parse(game_time).to_i - Time.now.to_i

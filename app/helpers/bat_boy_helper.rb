@@ -71,7 +71,7 @@ module BatBoyHelper
       current_inning = @game_pbp[:game][:innings].last
       current_half_inning = current_inning[:halfs].select {|inning_half| inning_half[:events].any?}.last
       at_bat_events = current_half_inning[:events].select do |event|
-        p event
+        # p event
         return event[:at_bat]
       end
       return nil if at_bat_events.empty?
