@@ -10,7 +10,7 @@ module StadiumHelper
       Snitcher.snitch("1a87a8c24a", message: "Sleep is beginning!!!")
       seconds_until_game = DateTime.parse(game_time).to_i - Time.now.to_i
       (seconds_until_game / 60).times do |i|
-        Snitcher.snitch("1a87a8c24a", message: "Sleeping: index: #{i}, time: #{Time.now.to_i}, game_time: #{game_time.to_i}")
+        Snitcher.snitch("1a87a8c24a", message: "S: #{i} t: #{Time.now.to_i} gt: #{game_time.to_i}")
         # p "Sleeping... index: #{i}, time: #{Time.now}"
         # p "Gametime: #{game_time}"
         # p game_time.to_i
