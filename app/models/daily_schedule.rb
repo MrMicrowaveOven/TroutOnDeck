@@ -31,7 +31,7 @@ class DailySchedule < ApplicationRecord
       games << {game_time: angelGame["scheduled"], game_id: angelGame["id"]}
       todaysSchedule.save!
     end
-    Commentator.send_schedule_update
+    # Commentator.send_schedule_update
     p "++++++++++"
     p games
     games.each {|game| Stadium.new(game[:game_time], game[:game_id])}
