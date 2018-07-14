@@ -14,6 +14,9 @@ module StadiumHelper
         Snitcher.snitch("1a87a8c24a", message: "S: #{i} t: #{Time.now.to_i} gt: #{DateTime.parse(game_time)}")
         p "LALALA"
         p "Sleeping.  Index: #{i}, Time: #{Time.now.to_i} GameTime: #{DateTime.parse(game_time).to_i}"
+        num_seconds_until_game = DateTime.parse(game_time).to_i - Time.now.to_i
+        p "Game starts in #{num_seconds_until_game} seconds"
+        p "That's #{num_seconds_until_game/3600} hours, #{num_seconds_until_game%3600 / 60} minutes, and #{num_seconds_until_game%60} seconds!"
         # p "Sleeping... index: #{i}, time: #{Time.now}"
         # p "Gametime: #{game_time}"
         # p game_time.to_i
