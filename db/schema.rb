@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808233102) do
+ActiveRecord::Schema.define(version: 20180716042134) do
 
   create_table "alerts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170808233102) do
     t.datetime "game_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "game_over", default: false
   end
 
 end

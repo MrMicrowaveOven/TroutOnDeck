@@ -24,16 +24,12 @@ class DailySchedule < ApplicationRecord
     angelsGames = games.select {|game| game["home_team"] == "4f735188-37c8-473d-ae32-1f7e34ccf892" || game["away_team"] == "4f735188-37c8-473d-ae32-1f7e34ccf892"}
     games = []
     angelsGames.each do |angelGame|
-      todaysSchedule = DailySchedule.new({
-        "game_id": angelGame["id"],
-        "game_time": angelGame["scheduled"]
-      })
+      todaysSchedule = DailySchedule.new(
+        game_id: angelGame["id"],
+        game_time: angelGame["scheduled"]
+      )
       games << {game_time: angelGame["scheduled"], game_id: angelGame["id"]}
       todaysSchedule.save!
     end
-    # Commentator.send_schedule_update
-    p "++++++++++"
-    p games
-    games.each {|game| Stadium.new(game[:game_time], game[:game_id])}
   end
 end
