@@ -5,9 +5,9 @@ module StadiumHelper
     def initialize
       todays_game = DailySchedule.last
       p "Time now: #{Time.now}"
-      p "Game time: #{todays_game.game_time}"
-      p "Game started? #{todays_game.game_time > Time.now}"
-      return if todays_game.game_time > Time.now
+      p "Game time: #{todays_game.game_time.utc}"
+      p "Game started? #{todays_game.game_time.utc > Time.now}"
+      return if todays_game.game_time.utc > Time.now
       return if todays_game.game_over
       Snitcher.snitch("1a87a8c24a", message: "Game starting!!! #{Time.now}")
       5.times do |index|
