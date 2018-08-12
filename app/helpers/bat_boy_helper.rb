@@ -18,6 +18,7 @@ module BatBoyHelper
 
     def trout_on_deck?
       return false if !game_going_on?
+      return false if !players_lineup_number(TROUT_ID)
       players_lineup_number(player_at_bat) == players_lineup_number(TROUT_ID) - 1
     end
 
